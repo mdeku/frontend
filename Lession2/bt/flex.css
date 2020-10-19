@@ -1,0 +1,62 @@
+.container{
+	display: flex;
+	width: 100%;
+}
+
+.row{
+	display: flex;
+	width: 100%;
+}
+
+.row1{
+	flex: 1;
+}
+
+.row2{
+	display: flex;
+	flex-direction: row;
+	margin: 0px;
+	padding: 0px;
+}
+
+.line{
+	height: 1px;
+	background: #E6E7EB;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.col{
+	display: flex;
+	margin: 5px;
+}
+
+.cold1-2{
+	flex:1;
+}
+
+.col2-2{
+	flex: 5;
+	margin-right: 300px;
+	display: flex;
+}
+
+.col3-2{
+	flex: 1;
+}
+
+.icon{
+	margin: 5px;
+}
+
+.categories{
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.aibaba-icon{
+	height: 50px;
+	width: 150px;
+}

@@ -1,0 +1,36 @@
+
+.container{
+	height: 100%;
+}
+
+#div-header{
+	float: left;
+	background-image: url("a.jpg");
+	background-size: cover;
+	height: 100%;
+}
+
+#div-form{
+	float: right;
+	width: 33.33%;
+}
+
+.header{
+	text-transform: uppercase;
+}
+
+#header1{
+	color: red;
+}
+
+#header2{
+	color: white;
+}
+
+input{
+	border-radius: 5px;
+}
+
+select{
+	border-radius: 5px;
+}
