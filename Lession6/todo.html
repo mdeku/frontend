@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .w-100{
+            width: 100%;
+        }
+        .al-right{
+            text-align: right;
+        }
+        table tr th, table tr td {
+            vertical-align: middle;
+            padding: 10px 5px;
+        }
+        table tr th, .t-center{
+            text-align: center;
+        }
+        #triangle-down {
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 10px solid black;
+        }
+        .dropdown ul{
+            list-style: none;
+        }
+        .dropdown button{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .dropdown-item{
+            cursor: pointer;
+        }
+        .dropdown-item:hover{
+            background-color: lightblue;
+        }
+        .dropdown-item.active{
+            background-color: #007db8;
+            color: white;
+        }
+    </style>
+    <h2 id="clock" class="ml-3 mt-3">00 : 00 : 00</h2>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <h1>TODO List.</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <input class="form-control w-100" id="cv" placeholder="Bạn nhập việc cần làm..." />
+            </div>
+            <div class="col-md-2">
+                <div class="dropdown">
+                    <button class="w-100 form-control" id="dropdownButton"  aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
+                        <span id="btn-content">Done</span><i id="triangle-down"></i>
+                    </button>
+                    <ul id="dropdown-option" class="dropdown-menu"  aria-labelledby="dropdownButton">
+                        <li class="dropdown-item active" onclick="changeStatus('Done',this)">Done</li>
+                        <li class="dropdown-item" onclick="changeStatus('Todo',this)">Todo</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="button-group al-right">
+                    <button class="btn btn-primary" onclick="create()">Thêm mới</button>
+                    <button class="btn btn-primary" onclick="update()">Cập nhật</button>
+                    <button class="btn btn-primary" onclick="deleteItem()">Xóa</button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h3>0 Task(s)</h3>
+            </div>
+            <div class="col-md-12">
+                <table id ="table1" border="1" class="w-100">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body">
+                        <tr>
+                            <td colspan="3" class="t-center"><i>No record found.</i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        var storageIndex;
+        function changeStatus(status,e){
+            document.getElementsByClassName("active")[0].classList.remove("active");
+            e.classList.add("active");
+            document.getElementById("btn-content").innerText=status;
+        }
+        function timeNow(){
+            var date=new Date();
+            var h= date.getHours();
+            var m= date.getMinutes();
+            var s= date.getSeconds();
+            var time = h +' : '+m+' : '+s;
+            // console.log(time);
+            return time;
+        }
+        function setClock(){
+            setInterval( function(){
+                var date=new Date();
+                var h= date.getHours();
+                var m= date.getMinutes();
+                var s= date.getSeconds();
+                document.getElementById("clock").innerText= replaceTime(h) + " : " + replaceTime(m) + " : " + replaceTime(s);
+            },1000);
+        }
+        function replaceTime(time){
+            return time < 10 ? "0"+time:time;
+        }
+        setClock();
+        var dsach=[];
+        var checkLS=localStorage.getItem("danhsach_congviec");
+        if(checkLS != null){
+            dsach=[...JSON.parse(checkLS)];
+        }
+        function makeItem(){
+            var name = document.getElementById("cv").value;
+            var status = document.getElementById("btn-content").innerText;
+            var time = document.getElementById("clock").innerText;
+            var cv={
+                ten:name,
+                trangthai:status,
+                tgian:time
+            }
+            return cv;
+        }
+        //Create
+        function create(){
+
+            dsach.push(makeItem());
+            localStorageData();
+            subTime();
+        }
+        //Localstorage
+        function localStorageData(){
+            localStorage.setItem("danhsach_congviec", JSON.stringify(dsach));
+        }
+
+        //Read
+        function read(){
+            var local=JSON.parse(localStorage.getItem("danhsach_congviec"));
+            var trData="";
+            if(local != null){
+                for(var i=0; i<local.length ;i++){
+                    trData += "<tr onclick='getDetail("+i+")'>"+
+                    "<td>"+local[i].ten+"</td>"+
+                    "<td>"+local[i].trangthai+"</td>"+
+                    "<td>"+local[i].tgian+"</td>"+
+                    "</tr>"
+                }
+            }
+
+            document.getElementById("body").innerHTML=trData;
+
+        }
+        function getDetail(currentIndex){
+            storageIndex=currentIndex;
+            document.getElementById("cv").value=dsach[currentIndex].ten;
+            //document.getElementById("cv").value=element.childNodes[0].innerText;
+        }
+        read();
+        //set timeout
+        setInterval(subTime,1000);
+
+        
+        //Update
+        function update(){
+            var item=dsach[storageIndex];
+            var newValue = makeItem();
+            dsach[storageIndex]=newValue;
+            localStorageData();
+            subTime();
+        }
+        //Delete
+        function deleteItem(){
+            dsach.splice(storageIndex, 1);
+            localStorageData();
+            subTime();
+        }
+        //convert hh:mm:ss to seconds
+        function converTime(hms){
+            // var hms = '02 : 04 : 33'; 
+            var a = hms.split(':');
+            var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+            return seconds;
+        }
+        //set background
+        function set_background(index) {
+          myTB = document.getElementById("table1");
+          myTBElements = myTB.getElementsByTagName("tr");
+          myTr = myTBElements[index];
+          myTr.style.background = "rgb(255,0,0)";
+
+      }
+      //sub time
+      function subTime(){
+        var local=JSON.parse(localStorage.getItem("danhsach_congviec"));
+        if(local != null){
+            read();
+            for(var i=0; i<local.length ;i++){
+                var time = converTime(dsach[i].tgian);
+                var now = converTime(timeNow());
+                var sub = now - time;
+                console.log(Math.abs(sub));
+                if(Math.abs(sub) <= 5){
+                    set_background(i+1);
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
