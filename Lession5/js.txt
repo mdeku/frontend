@@ -1,0 +1,25 @@
+KN:
+JavaScript (viết tắt là "js") là một ngôn ngữ lập trình mang đầy đủ tính năng của một ngôn ngữ lập trình động mà khi nó được áp dụng 
+vào một tài liệu HTML, nó có thể đem lại khả năng tương tác động trên các trang web.
+
+Ngôn ngữ lập trình động là ngôn ngữ lập trình trong đó các thao tác được thực hiện tại thời gian biên dịch có thể được thực hiện 
+trong thời gian chạy.
+
+Note:
+	- DOM selector:
+	 document.getElementById/TagName/ClassName("")
+
+	- Loop: for: lấy item theo index
+
+	- Local Storage: 2 function: setitem & getitem.
+	Mỗi lần lưu phải lấy hết dữ liệu ra, cho dữ liệu thêm vào và dữ liệu đã có thành 1 object, rồi đẩy object đó vào lại.
+
+	- CRUD:
+		C: create - 
+		r: read
+		u: update
+		d: delete
+
+Question: 
+	- Local Storage vs Session
+	- Solid là nguyên tắc gì?

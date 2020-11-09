@@ -1,0 +1,13 @@
+Bootstrap:
+  CDN: thông qua link web để tải bootstrap
+  Quan trọng: layout. Mỗi màn hình được chia làm 12 cột, 1 hàng. vd: col-ms-4: 12/4=3 cột, chia mh làm 3 cột
+    container > row > col
+   
+Javascript:
+    - kieu khai bao
+    - OOD/OOP
+    - Syntax
+    - mảng, object
+    - loop
+
+BTVN: tạo file login responsive

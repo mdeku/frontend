@@ -1,0 +1,47 @@
+.form{
+    min-height: 100vh;
+}
+
+.row{
+	flex-direction: column;
+}
+
+.form-todo{
+	width: 90%;
+	border-radius: 10px;
+	margin: 10px auto;
+	padding: 10px;
+}
+
+.form-body-input{
+	display: flex;
+	/*flex-direction: row;*/
+}
+
+.todo-input{
+	flex: 4;
+	margin: 5px;
+}
+
+.todo-select{
+	flex: 1;
+	margin: 5px;
+}
+
+.form-body-item{
+	display: flex;
+	justify-content: flex-end;
+	margin: 10px auto;
+}
+
+.btn{
+	margin: 5px;
+}
+
+.task-number{
+	margin: 5px;
+}
+
+.from-list{
+	margin: 20px auto;
+}

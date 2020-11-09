@@ -61,28 +61,28 @@ body{
 }
 
 /*Small devices (landscape phones, 576px and up)*/
-@media (min-width: 576px) { 
+@media only screen and (min-width: 200px) { 
     body{
         flex-direction: column;
     }
 }
 
 /*Medium devices (tablets, 768px and up)*/
-@media (min-width: 768px) {
+@media only screen and (min-width: 768px) {
     body{
         flex-direction: column;
     }
 }
 
 /*Large devices (desktops, 992px and up)*/
-@media (min-width: 992px) {
+@media only screen and (min-width: 992px) {
     body{
         flex-direction: column;
     }
 }
 
 /*Extra large devices (large desktops, 1200px and up)*/
-@media (min-width: 1200px) {
+@media only screen and (min-width: 1200px) {
     body{
         flex-direction: row;
     }

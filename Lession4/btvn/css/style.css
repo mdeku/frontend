@@ -1,0 +1,94 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.container-fluid{
+    height: 100%;
+}
+
+.row{
+    height: 100%;
+}
+
+.left-column {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.entire-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    width: 70%
+}
+
+.row1 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row2 {
+    flex: 3;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    height: 100%;
+    width: 100%;
+}
+
+.submit{
+    margin-top: 20px;
+}
+
+.form-user:active {
+    ;
+}
+
+.username{
+    display: none;
+}
+
+.password{
+    display: none;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+    .background {
+        height: 100%;
+        width: 100%;
+        background-image: url(../background.jpg);
+        background-size: cover;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .background {
+        height: 100%;
+        width: 100%;
+        background-image: url(../background.jpg);
+        background-size: cover;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .background {
+        height: 100%;
+        width: 100%;
+        background-image: url(../background.jpg);
+        background-size: cover;
+    }
+}
